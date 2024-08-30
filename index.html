@@ -18,46 +18,122 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Home - AdminZero</title>
+
+    <style>
+        /* Overlay styling */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(10px); /* Blur effect on background content */
+        }
+
+        /* Rounded corner block */
+        .overlay-content {
+            background: rgba(255, 0, 0, 0.7); /* Slightly more opaque for better readability */
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px); /* Extra blur on the content block */
+        }
+
+        /* Continue button styling */
+        .continue-btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: background-color 0.3s ease;
+        }
+
+        .continue-btn:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Blurring the main content while the overlay is active */
+        body.hidden-content #main-content {
+            filter: blur(10px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Hide main content initially */
+        #main-content {
+            display: block;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <a href="https://boyratata.github.io/AdminZero" class="logo">AdminZero</a>
-        <nav>
-            <a href="https://boyratata.github.io/AdminZero" class="active">Home</a>
-            <a href="skills.html">Skills</a>
-            <a href="education.html">Education</a>
-            <a href="experience.html">Experience</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
+<body class="hidden-content">
 
-    <section class="home">
-        <div class="home-img">
-            <img src="main.jpg" alt="AdminZero">
+    <!-- Overlay content -->
+    <div class="overlay">
+        <div class="overlay-content">
+            <h1>Welcome to AdminZero</h1>
+            <p>Continue to the website</p>
+            <button class="continue-btn" onclick="continueToWebsite()">Continue</button>
         </div>
-        <div class="home-content">
-            <h1>Hi, It's <span>AdminZero</span></h1>
-            <h3 class="typing-text">I'm a <span></span></h3>
-            <p>Hello! I'm AdminZero. I specialize in creating innovative and efficient solutions in the world of technology. 
-               With a passion for coding and a drive for excellence, I focus on developing projects that make a meaningful impact. 
-               My expertise spans across various domains, including application development, bot creation, and web design. 
-               Always eager to take on new challenges, I strive to enhance and optimize every project I work on.
-            </p>
-            <div class="social-icons">
-                <a href="https://github.com/boyratata"><i class="fa-brands fa-github"></i></a>
-                <a href="https://x.com/KaraokeYuki"><i class="fa-brands fa-x-twitter"></i></a>
+    </div>
+
+    <!-- Main content -->
+    <div id="main-content">
+        <header>
+            <a href="https://boyratata.github.io/AdminZero" class="logo">AdminZero</a>
+            <nav>
+                <a href="https://boyratata.github.io/AdminZero" class="active">Home</a>
+                <a href="skills.html">Skills</a>
+                <a href="education.html">Education</a>
+                <a href="experience.html">Experience</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <section class="home">
+            <div class="home-img">
+                <img src="main.jpg" alt="AdminZero">
             </div>
-        </div>
-    </section>
+            <div class="home-content">
+                <h1>Hi, It's <span>AdminZero</span></h1>
+                <h3 class="typing-text">I'm a <span></span></h3>
+                <p>Hello! I'm AdminZero. I specialize in creating innovative and efficient solutions in the world of technology. 
+                   With a passion for coding and a drive for excellence, I focus on developing projects that make a meaningful impact. 
+                   My expertise spans across various domains, including application development, bot creation, and web design. 
+                   Always eager to take on new challenges, I strive to enhance and optimize every project I work on.
+                </p>
+                <div class="social-icons">
+                    <a href="https://github.com/boyratata"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://x.com/KaraokeYuki"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </section>
 
-    <audio id="background-music" src="https://boyratata.github.io/AdminZero/Audio/background-music.mp3" autoplay loop muted hidden></audio>
+        <audio id="background-music" src="https://boyratata.github.io/AdminZero/Audio/background-music.mp3" autoplay loop muted hidden></audio>
 
-    <script>
-        document.addEventListener('click', function() {
-            var audio = document.getElementById('background-music');
-            audio.muted = false;
-            audio.play();
-        });
-    </script>
+        <script>
+            document.addEventListener('click', function() {
+                var audio = document.getElementById('background-music');
+                audio.muted = false;
+                audio.play();
+            });
+
+            function continueToWebsite() {
+                document.querySelector('.overlay').style.display = 'none';
+                document.body.classList.remove('hidden-content');
+            }
+        </script>
+    </div>
 </body>
 </html>
