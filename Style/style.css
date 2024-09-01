@@ -257,20 +257,25 @@ body {
 
 /* Style for the scrollbar */
 ::-webkit-scrollbar {
-    width: 12px; /* Adjust the width of the scrollbar */
+    width: 10px; /* Width of the scrollbar */
 }
 
+/* Style the draggable part of the scrollbar */
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 0, 0, 0.07); /* Red with transparency */
-    border-radius: 16px; /* Rounded corners */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Blur effect */
-    backdrop-filter: blur(13.2px); /* Blur effect */
-    -webkit-backdrop-filter: blur(13.2px); /* Blur effect for WebKit browsers */
+    background: rgba(255, 0, 0, 0.2); /* Slightly darker red with transparency */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
 }
 
+/* Style the track (the area the thumb slides within) */
 ::-webkit-scrollbar-track {
-    background: rgba(255, 0, 0, 0.07); /* Light red background for the track */
-    border-radius: 16px; /* Rounded corners */
-    border: 1px solid rgba(255, 0, 0, 0.2); /* Border effect */
+    background: rgba(255, 0, 0, 0.1); /* Light red background */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Optional: Hide scrollbar track when not scrolling */
+::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px; /* Rounded corners */
 }
 
