@@ -243,3 +243,34 @@ span{
         margin-top: 4rem;
     }
 }
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+
+.visitor-counter {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Style for the scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* Adjust the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 0, 0, 0.07); /* Red with transparency */
+    border-radius: 16px; /* Rounded corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Blur effect */
+    backdrop-filter: blur(13.2px); /* Blur effect */
+    -webkit-backdrop-filter: blur(13.2px); /* Blur effect for WebKit browsers */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 0, 0, 0.07); /* Light red background for the track */
+    border-radius: 16px; /* Rounded corners */
+    border: 1px solid rgba(255, 0, 0, 0.2); /* Border effect */
+}
+
