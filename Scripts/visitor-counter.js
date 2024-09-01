@@ -1,36 +1,46 @@
-(function() {
-    // Function to get cookie value by name
-    function getCookie(name) {
-        let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-        if (match) return decodeURIComponent(match[2]);
-        return null;
-    }
+(() => {
+    const apiUrl = 'data/visitor-count.json';
+
+    const updateVisitorCount = async () => {
+        try {
+            // Get the current visitor count from the JSON file
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            const countElem = document.getElementById('visitor-count');
+            let count = data.count;
+
+            // Update the count on the server if not already visited
+            if (!getCookie('visited')) {
+                // Simulate increment and update (not directly reflected in GitHub)
+                count++;
+                // Update the local count display
+                countElem.textContent = count;
+                setCookie('visited', 'true', 1); // Set cookie for 1 day
+            } else {
+                countElem.textContent = count;
+            }
+        } catch (error) {
+            console.error('Error fetching visitor count:', error);
+        }
+    };
+
+    // Function to get cookie value
+    const getCookie = (name) => {
+        const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
+        return match ? decodeURIComponent(match[2]) : null;
+    };
 
     // Function to set a cookie
-    function setCookie(name, value, days) {
+    const setCookie = (name, value, days) => {
         let expires = "";
         if (days) {
-            let date = new Date();
+            const date = new Date();
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
+            expires = `; expires=${date.toUTCString()}`;
         }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    }
-
-    // Function to increment visitor count
-    function updateVisitorCount() {
-        let visitorCount = parseInt(document.getElementById('visitor-count').textContent) || 0;
-        let hasVisited = getCookie('visited');
-
-        if (!hasVisited) {
-            // Increment visitor count if not already counted
-            visitorCount += 1;
-            setCookie('visited', 'true', 1); // Set cookie for 1 day
-        }
-
-        document.getElementById('visitor-count').textContent = visitorCount;
-    }
+        document.cookie = `${name}=${encodeURIComponent(value || "")}${expires}; path=/`;
+    };
 
     // Initialize visitor count on page load
-    updateVisitorCount();
+    document.addEventListener('DOMContentLoaded', updateVisitorCount);
 })();
